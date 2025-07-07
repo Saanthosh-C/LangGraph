@@ -1,5 +1,5 @@
 # Virtual environment
-venv/
+.venv/
 .env/
 
 # Environment variables
@@ -19,6 +19,7 @@ pip-wheel-metadata/
 *.pytest_cache/
 coverage/
 htmlcov/
+__pycache__/
 
 # Jupyter notebooks checkpoints (if any)
 .ipynb_checkpoints/

@@ -1,12 +1,11 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 from langchain.agents import initialize_agent, tool
 from langchain_community.tools import TavilySearchResults
 import datetime
-
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
+llm = ChatOpenAI(openai_api_base="https://apidev.navigatelabsai.com",model="llama3-8b-8192")
 
 search_tool = TavilySearchResults(search_depth="basic")
 

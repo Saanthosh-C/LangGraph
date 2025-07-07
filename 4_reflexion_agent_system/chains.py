@@ -1,5 +1,7 @@
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 import datetime
+from dotenv import load_dotenv
+load_dotenv()
 from langchain_openai import ChatOpenAI
 from schema import AnswerQuestion, ReviseAnswer
 from langchain_core.output_parsers.openai_tools import PydanticToolsParser, JsonOutputToolsParser
@@ -33,7 +35,7 @@ first_responder_prompt_template = actor_prompt_template.partial(
     first_instruction="Provide a detailed ~250 word answer"
 )
 
-llm = ChatOpenAI(model="gpt-4o")
+llm = ChatOpenAI(openai_api_base="https://apidev.navigatelabsai.com",model="llama3-8b-8192")
 
 first_responder_chain = first_responder_prompt_template | llm.bind_tools(tools=[AnswerQuestion], tool_choice='AnswerQuestion') 
 
@@ -56,7 +58,7 @@ revisor_chain = actor_prompt_template.partial(
 
 # response = first_responder_chain.invoke({
 #     "messages": [HumanMessage("AI Agents taking over content creation")]
-# })s
+# })
 
 # print(response)
 

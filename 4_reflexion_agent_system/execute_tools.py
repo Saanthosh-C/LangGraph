@@ -1,5 +1,7 @@
 import json
 from typing import List, Dict, Any
+from dotenv import load_dotenv
+load_dotenv()
 from langchain_core.messages import AIMessage, BaseMessage, ToolMessage, HumanMessage
 from langchain_community.tools import TavilySearchResults
 
@@ -67,9 +69,9 @@ test_state = [
 ]
 
 # Execute the tools
-# results = execute_tools(test_state)
+results = execute_tools(test_state)
 
-# print("Raw results:", results)
-# if results:
-#     parsed_content = json.loads(results[0].content)
-#     print("Parsed content:", parsed_content)
+print("Raw results:", results)
+if results:
+    parsed_content = json.loads(results[0].content)
+    print("Parsed content:", parsed_content)
