@@ -1,6 +1,6 @@
 from typing import TypedDict, Annotated
 from langgraph.graph import add_messages, StateGraph, END
-from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import AIMessage, HumanMessage
 from dotenv import load_dotenv
 from langchain_community.tools.tavily_search import TavilySearchResults
@@ -14,7 +14,7 @@ class BasicChatBot(TypedDict):
 search_tool = TavilySearchResults(max_results=2)
 tools = [search_tool]
 
-llm = ChatGroq(model="llama-3.1-8b-instant")
+llm = ChatOpenAI(openai_api_base="https://apidev.navigatelabsai.com",model="llama3-8b-8192")
 
 llm_with_tools = llm.bind_tools(tools=tools)
 

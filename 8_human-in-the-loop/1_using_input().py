@@ -1,12 +1,13 @@
 from typing import TypedDict, Annotated
 from langchain_core.messages import HumanMessage
 from langgraph.graph import add_messages, StateGraph, END
-from langchain_groq import ChatGroq
-
+from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+load_dotenv()
 class State(TypedDict): 
     messages: Annotated[list, add_messages]
 
-llm = ChatGroq(model="llama-3.1-8b-instant")
+llm = ChatOpenAI(openai_api_base="https://apidev.navigatelabsai.com",model="llama3-8b-8192")
 
 GENERATE_POST = "generate_post"
 GET_REVIEW_DECISION = "get_review_decision"

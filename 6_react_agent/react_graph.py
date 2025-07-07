@@ -1,10 +1,7 @@
 from dotenv import load_dotenv
-
 load_dotenv()
-
 from langchain_core.agents import AgentFinish, AgentAction
 from langgraph.graph import END, StateGraph
-
 from nodes import reason_node, act_node
 from react_state import AgentState
 
@@ -39,7 +36,8 @@ result = app.invoke(
         "input": "How many days ago was the latest SpaceX launch?", 
         "agent_outcome": None, 
         "intermediate_steps": []
-    }
+    },
+    config={"recursion_limit": 40}
 )
 
 print(result["agent_outcome"].return_values["output"], "final result")

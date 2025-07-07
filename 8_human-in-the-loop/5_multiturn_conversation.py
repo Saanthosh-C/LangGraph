@@ -1,12 +1,14 @@
 from langgraph.graph import StateGraph, START, END, add_messages
 from langgraph.types import Command, interrupt
 from typing import TypedDict, Annotated, List
+from dotenv import load_dotenv
+load_dotenv()
 from langgraph.checkpoint.memory import MemorySaver
-from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 import uuid
 
-llm = ChatGroq(model="llama-3.1-8b-instant")
+llm = ChatOpenAI(openai_api_base="https://apidev.navigatelabsai.com",model="llama3-8b-8192")
 
 class State(TypedDict): 
     linkedin_topic: str

@@ -1,6 +1,6 @@
 from typing import TypedDict, Annotated
 from langgraph.graph import add_messages, StateGraph, END
-from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import AIMessage, HumanMessage
 from dotenv import load_dotenv
 from langgraph.checkpoint.memory import MemorySaver
@@ -9,7 +9,7 @@ load_dotenv()
 
 memory = MemorySaver()
 
-llm = ChatGroq(model="llama-3.1-8b-instant")
+llm = ChatOpenAI(openai_api_base="https://apidev.navigatelabsai.com",model="llama3-8b-8192")
 
 class BasicChatState(TypedDict): 
     messages: Annotated[list, add_messages]
